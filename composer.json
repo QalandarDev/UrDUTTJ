@@ -1,0 +1,81 @@
+{
+  "name": "sinus/yii2-template",
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "sinus",
+      "email": "sinus_22@mail.ru"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.0.4",
+    "ext-bcmath": "*",
+    "ext-json": "*",
+    "ext-PDO": "*",
+    "ext-intl": "*",
+    "ext-curl": "*",
+    "ext-iconv": "*",
+    "yiisoft/yii2": "~2.0.14",
+    "yiisoft/yii2-bootstrap4": "~2.0.0",
+    "yiisoft/yii2-httpclient": "^2.0",
+    "yiisoft/yii2-redis": "^2.0",
+    "yiisoft/yii2-queue": "^2.3",
+    "vlucas/phpdotenv": "^5.3",
+    "lavrentiev/yii2-toastr": "^2.0",
+    "yiisoft/yii2-jui": "^2.0",
+    "yiisoft/yii2-authclient": "^2.2",
+    "kartik-v/yii2-widget-select2": "^2.2",
+    "kartik-v/yii2-widget-datepicker": "^1.4",
+    "kartik-v/yii2-widget-timepicker": "^1.0",
+    "kartik-v/yii2-widget-datetimepicker": "^1.4",
+    "kartik-v/yii2-widget-depdrop": "^1.0",
+    "hail812/yii2-adminlte3": "^1.1",
+    "phpoffice/phpspreadsheet": "^1.20"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.1.0",
+    "yiisoft/yii2-gii": "~2.2.0"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "yii\\composer\\Installer::postInstall"
+    ],
+    "post-create-project-cmd": [
+      "yii\\composer\\Installer::postCreateProject",
+      "yii\\composer\\Installer::postInstall"
+    ]
+  },
+  "extra": {
+    "yii\\composer\\Installer::postCreateProject": {
+      "setPermission": [
+        {
+          "var": "0777",
+          "public/assets": "0777",
+          "yii": "0755"
+        }
+      ]
+    },
+    "yii\\composer\\Installer::postInstall": {
+      "generateCookieValidationKey": [
+        "config/main.php"
+      ]
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
