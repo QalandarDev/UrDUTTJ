@@ -39,6 +39,10 @@ $config = [
             'class' => 'aki\telegram\Telegram',
             'botToken' => getenv('DARSJADVAL'),
         ],
+        'urduanticorbot' => [
+            'class' => 'aki\telegram\Telegram',
+            'botToken' => getenv('URDUANTICOR'),
+        ],
         'cache' => [
             'class' => FileCache::class,
         ],
