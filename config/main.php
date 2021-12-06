@@ -35,6 +35,10 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Cpi_vU33Ko1on8zujdmeI9FyOc1oUDEX',
         ],
+        'darsjadvalbot' => [
+            'class' => 'aki\telegram\Telegram',
+            'botToken' => '2120273228:AAGjh_VWhGWzBNUNMdM9IcenrnsDNApZ6fc',
+        ],
         'cache' => [
             'class' => FileCache::class,
         ],
