@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace app\controllers;
 
 use aki\telegram\Telegram;
 use aki\telegram\types\CallbackQuery;
