@@ -50,49 +50,72 @@ class DarsJadvalController extends Controller
         $this->bot = Yii::$app->darsjadvalbot;
         if ($this->getMessage()) {
             if (!$this->getUser()) $this->AddUser();
-            $result = $this->bot->sendMessage([
-                'chat_id' => $this->message->getFrom()->id,
-                "text" => "Assalomu alaykum UrDUDarsJadvalBotga hush kelibsiz",
-                'reply_markup' => json_encode(self::DepartmentButtons())
-            ]);
+            try {
+                $this->bot->sendMessage([
+                    'chat_id' => $this->message->getFrom()->id,
+                    "text" => "Assalomu alaykum UrDUDarsJadvalBotga hush kelibsiz",
+                    'reply_markup' => json_encode(self::DepartmentButtons())
+                ]);
+            }catch (\Exception $ex){
+                error_log($ex->getMessage());
+            }
 
         } elseif ($this->getCallbackQuery()) {
             $data = Json::decode($this->callback_query->data,true);
             switch ($data['step']){
                 case -1:
-                    $this->bot->editMessageText([
-                        'message_id'=>$this->callback_query->message['message_id'],
-                        'chat_id' => $this->callback_query->from['id'],
-                        'text' => "Fakultetni" . self::getFooter(),
-                        'reply_markup' => json_encode(self::DepartmentButtons())
-                    ]);
+                    try {
+                        $this->bot->editMessageText([
+                            'message_id'=>$this->callback_query->message['message_id'],
+                            'chat_id' => $this->callback_query->from['id'],
+                            'text' => "Fakultetni" . self::getFooter(),
+                            'reply_markup' => json_encode(self::DepartmentButtons())
+                        ]);
+                    } catch (\Exception $ex){
+                        error_log($ex->getMessage());
+                    }
+
                     break;
                 case 1:
-                    $this->bot->editMessageText([
-                        'message_id'=>$this->callback_query->message['message_id'],
-                        'chat_id' => $this->callback_query->from['id'],
-                        'text' => "Ta'lim bosqichini tanlang" . self::getFooter(),
-                        'reply_markup' => json_encode(self::CourseButtons($data[0]['dep']))
-                    ]);
+                    try {
+                        $this->bot->editMessageText([
+                            'message_id'=>$this->callback_query->message['message_id'],
+                            'chat_id' => $this->callback_query->from['id'],
+                            'text' => "Ta'lim bosqichini tanlang" . self::getFooter(),
+                            'reply_markup' => json_encode(self::CourseButtons($data[0]['dep']))
+                        ]);
+                    }catch (\Exception $ex){
+                        Yii::error($ex->getMessage());
+                    }
                     break;
                 case 2:
-                    $this->bot->editMessageText([
-                        'message_id'=>$this->callback_query->message['message_id'],
-                        'chat_id' => $this->callback_query->from['id'],
-                        'text' => "Ta'lim yo'nalishini tanlang" . self::getFooter(),
-                        'reply_markup' => json_encode(self::GetGroups($data[0]['dep'],$data[0]['level'],$data[0]['page'])),
-                        'parse_mode'=>'html'
-                    ]);
+                    try {
+                        $this->bot->editMessageText([
+                            'message_id'=>$this->callback_query->message['message_id'],
+                            'chat_id' => $this->callback_query->from['id'],
+                            'text' => "Ta'lim yo'nalishini tanlang" . self::getFooter(),
+                            'reply_markup' => json_encode(self::GetGroups($data[0]['dep'],$data[0]['level'],$data[0]['page'])),
+                            'parse_mode'=>'html'
+                        ]);
+                    }catch (\Exception $ex){
+                        Yii::error($ex->getMessage());
+                    }
                     break;
                 case 3:
-                    $this->bot->editMessageText([
-                        'message_id'=>$this->callback_query->message['message_id'],
-                        'chat_id' => $this->callback_query->from['id'],
-                        'text' => self::getSchedule($data[0]['dep'],$data[0]['group'],$data[0]['day']) . self::getFooter(),
-                        'parse_mode'=>'html',
-                        'reply_markup' => json_encode(self::WeekdayButtons($data[0]['dep'],$data[0]['level'],$data[0]['group']))
-                    ]);
+                    try {
+                        $this->bot->editMessageText([
+                            'message_id'=>$this->callback_query->message['message_id'],
+                            'chat_id' => $this->callback_query->from['id'],
+                            'text' => self::getSchedule($data[0]['dep'],$data[0]['group'],$data[0]['day']) . self::getFooter(),
+                            'parse_mode'=>'html',
+                            'reply_markup' => json_encode(self::WeekdayButtons($data[0]['dep'],$data[0]['level'],$data[0]['group']))
+                        ]);
+                    }catch (\Exception $ex){
+                        error_log($ex->getMessage());
+                    }
                     break;
+                default:
+                    throw new \Exception('Unexpected value');
 
             }
         }
