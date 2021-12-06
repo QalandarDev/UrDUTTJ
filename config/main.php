@@ -37,7 +37,7 @@ $config = [
         ],
         'darsjadvalbot' => [
             'class' => 'aki\telegram\Telegram',
-            'botToken' => '2120273228:AAGjh_VWhGWzBNUNMdM9IcenrnsDNApZ6fc',
+            'botToken' => getenv('DARSJADVAL'),
         ],
         'cache' => [
             'class' => FileCache::class,
