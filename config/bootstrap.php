@@ -29,7 +29,7 @@ Yii::setAlias('@vendorPath', $rootPath . '/vendor');
 Yii::setAlias('@migrationPath', $rootPath . '/src/console/migrations');
 Yii::setAlias('@messagesPath', $rootPath . '/messages');
 
-Yii::setAlias('@uploads', $rootPath . '/web/uploads');
+Yii::setAlias('@uploads', $rootPath . '/src/uploads');
 
 
 function dd(...$variables)
