@@ -12,6 +12,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
 use yii\httpclient\Client;
 use yii\httpclient\Exception;
 use yii\rest\Controller;
@@ -51,15 +52,14 @@ class AntiCorController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $this->bot = Yii::$app->urduanticorbot;
-        $text = Json::decode(file_get_contents("../uploads/app.js"), true);
-        self::$TEXT = Json::decode(file_get_contents("../uploads/app.js"), true);
+        self::$TEXT = Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true);;
         if ($this->getMessage()) {
             if ($this->message->text == "/start") {
                 if (!$this->getUser()) $this->AddUser();
                 if (self::getStep($this->message->getFrom()->id)!=1) {
                     $result = $this->bot->sendMessage([
                         'chat_id' => $this->message->getFrom()->id,
-                        "text" => $text['/start'] . self::getFooter(),
+                        "text" => self::$TEXT['/start'] . self::getFooter(),
                         'reply_markup' => json_encode(self::LanguageButtons()),
                         "parse_mode"=>"HTML",
                         "disable_web_page_preview"=>true,
