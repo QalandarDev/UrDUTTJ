@@ -36,7 +36,8 @@
     "kartik-v/yii2-widget-depdrop": "^1.0",
     "hail812/yii2-adminlte3": "^1.1",
     "phpoffice/phpspreadsheet": "^1.20",
-    "aki/yii2-bot-telegram": "*"
+    "aki/yii2-bot-telegram": "*",
+    "yii2tech/spreadsheet": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

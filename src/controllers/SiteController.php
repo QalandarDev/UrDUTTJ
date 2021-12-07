@@ -9,11 +9,15 @@ use app\models\forms\LoginForm;
 use app\models\BotAnticorMeta;
 use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
+use yii\data\ArrayDataProvider;
+use yii2tech\spreadsheet\Spreadsheet;
 use Throwable;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\Connection;
 use yii\db\Exception;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\web\Request;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -25,6 +29,7 @@ use yii\web\User;
 class SiteController extends Controller
 {
 
+    public $text;
     public function behaviors(): array
     {
         return [
@@ -140,11 +145,11 @@ class SiteController extends Controller
         return $this->render('about');
     }
     public function getValue($index,$id){
-        return Json::decode(file_get_contents("../uploads/app.js"), true)['1']['key'][$index][$id]??"-";
+        return Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true)['1']['key'][$index][$id]??"-";
 
     }
     public function actionDown(){
-        $this->text = Json::decode(file_get_contents("../uploads/app.js"), true)['1'];
+        $this->text = Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true)['1'];
         $cols=[
             [
                 'attribute' => '#',
@@ -301,7 +306,7 @@ class SiteController extends Controller
         return $val." %";
     }
     public function actionDep(){
-        $this->text = Json::decode(file_get_contents("../uploads/app.js"), true)['1'];
+        $this->text = Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true)['1'];
         $models=[];
         $full=[
             1=>1270,

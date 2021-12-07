@@ -52,7 +52,7 @@ class AntiCorController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $this->bot = Yii::$app->urduanticorbot;
-        self::$TEXT = Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true);;
+        self::$TEXT = Json::decode(file_get_contents(Yii::getAlias('@uploads')."/app.js") ,true);
         if ($this->getMessage()) {
             if ($this->message->text == "/start") {
                 if (!$this->getUser()) $this->AddUser();
