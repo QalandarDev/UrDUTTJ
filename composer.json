@@ -37,7 +37,11 @@
     "hail812/yii2-adminlte3": "^1.1",
     "phpoffice/phpspreadsheet": "^1.20",
     "aki/yii2-bot-telegram": "*",
-    "yii2tech/spreadsheet": "^1.0"
+    "yii2tech/spreadsheet": "^1.0",
+    "ext-dom": "*",
+    "ext-libxml": "*",
+    "simplehtmldom/simplehtmldom": "dev-master",
+    "ext-simplexml": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
