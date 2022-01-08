@@ -57,8 +57,7 @@ $config = [
 //        ],
         'migrate' => [
             'class' => MigrateController::class,
-            'migrationPath' => '@migrationPath',
-            'migrationTable' => "bot.migration",
+            'migrationPath' => '@migrationPath'
         ],
     ],
 
