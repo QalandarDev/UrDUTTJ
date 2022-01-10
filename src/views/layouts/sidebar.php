@@ -69,8 +69,29 @@ $bundle = GAsset::register($this);
                                         'encodeLabels' => false,
                                     "items" => [
                                         ["label" => '<i class="fa fa-home"></i>'.__('Home'), "url" => "/"],
-                                        ["label" => '<i class="fa fa-file"></i>'.__('Layout'), "url" => ["site/layout"]],
-                                        ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
+                                        [
+                                            "label" => '<i class="fa fa-file"></i>'.__('Layout'),
+                                            "url" => "#",
+                                            "items" => [
+                                                ["label" => "Yangi", "url" => ["application/pending"]],
+                                                ["label" => "Faol", "url" => ["application/active"]],
+                                                ["label" => "Rad etilgan", "url" => ["application/rejected"]],
+                                                ["label" => "Tugatilgan", "url" => ["application/deactivated"]],
+                                                ["label" => "Arxivlangan", "url" => ["application/archive"]],
+                                            ]
+                                        ],
+                                        [
+                                            "label" => "Shartnomalar",
+                                            "url" => "#",
+                                            "icon" => "close",
+                                            "items" => [
+                                                ["label" => "Yangi", "url" => ["contract/pending"]],
+                                                ["label" => "Faol", "url" => ["contract/active"]],
+                                                ["label" => "Rad etilgan", "url" => ["contract/rejected"]],
+                                                ["label" => "Tugatilgan", "url" => ["contract/deactivated"]],
+                                                ["label" => "Arxivlangan", "url" => ["contract/archive"]],
+                                            ]
+                                        ],
                                         [
                                             "label" => "Widgets",
                                             "icon" => "th",
